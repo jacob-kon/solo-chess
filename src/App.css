@@ -1,38 +1,147 @@
-.App {
-  text-align: center;
+body{
+    margin:0;
+}
+.gameContainer{
+    /* background-color: #bf9ee9; */
+    background: linear-gradient(#e88c8c, #9198e5);
+    width:100%;
+    height: 800px;
+}
+.rowContainer{
+    
+    display: flex;
+    justify-content: center;
+    min-width: 420px;
+    margin-top: 50px;
+}
+.row{
+    max-width: 450px;
+    display: flex;
+    flex-wrap: wrap;
+    color:red;
+    justify-content: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.gameHeading{
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 15px;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+}
+.blueChessSquare{
+    position: relative;
+    display: flex;
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    background-color: rgb(167, 173, 178);
+}
+.whiteChessSquare{
+    position: relative;
+    display: flex;
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    background-color: rgb(255, 255, 255);
+}
+.image{
+    margin: 15px;
+}
+.killButton{
+    background-color: red;
+    position: absolute;
+    top: 0px;
+    left:0px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50px;
+}
+.redButton{
+    background-color: red;
+    margin-left: 7px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50px;
+}
+img:hover{
+    cursor: pointer;
+}
+.killButton:hover{
+    cursor: pointer;
+}
+.instructions{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 250px;
+    background-color: #212529;
+    margin-top: 25px;
+    color: #FFFFFF80;
+}
+p{
+    margin: auto ;
+    margin-bottom: 0;
+    margin-top: 5px;
+    /* margin-left: 10px;
+    margin-top: 3px;
+    margin-bottom: 3px; */
+}
+.invalidMove{
+    position: absolute;
+    right:95px;
+    color:red;
+    font-size: 2em;
+}
+.selectPiece{
+    margin:0;
+    text-align: center;
+    color:rgb(68, 0, 255);
+}
+.selectLine{
+display:inline-block;
+font-size: 16px;
+}
+.cancelButton{
+    margin-left: 30px;
+}
+.selectedPiece{
+    position: relative;
+}
+.cancelButton{
+    position: absolute;
+    top: -30px;
+    left: -30px;
+    background-color: #84ba3f;
+    padding: 4px 12px;
+    color:#fff;
+    font-size: 16px;
+   
+    border-radius: 10px;
+    
+}
+.cancelButton:hover{
+    cursor: pointer;
+}
+h2{
+    margin-bottom: 0px;
+    font-family: 'Poppins', sans-serif;
+}
+.firstInstruction{
+    margin-top: 15px;
+    color:white
+}
+.newGame{
+    position: relative;
+}
+.newGameButton{
+    position: absolute;
+    left: 0px;
+    top: -90px;
+    background-color: #ba3f85;
+    padding: 8px 10px;
+    color:#fff;
+    font-size: 20px;
+    border-radius: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
