@@ -12,7 +12,7 @@ body{
     display: flex;
     justify-content: center;
     min-width: 420px;
-    margin-top: 50px;
+    /* margin-top: 50px; */
 }
 .row{
     max-width: 450px;
@@ -57,12 +57,27 @@ body{
     height: 15px;
     border-radius: 50px;
 }
+.moveButton{
+    background-color: #84ba3f;
+    width: 15px;
+    height: 15px;
+    position:absolute;
+    top:0;
+    right:0px;
+    border-radius:50px ;
+}
 .redButton{
     background-color: red;
     margin-left: 7px;
     width: 15px;
     height: 15px;
     border-radius: 50px;
+}
+.gameHelpers{
+    position: relative;
+    width:400px;
+    height: 120px;
+    margin: auto;
 }
 img:hover{
     cursor: pointer;
@@ -73,6 +88,7 @@ img:hover{
 .instructions{
     display: flex;
     flex-direction: column;
+    /* align-items: center; */
     width: 100%;
     height: 250px;
     background-color: #212529;
@@ -89,9 +105,10 @@ p{
 }
 .invalidMove{
     position: absolute;
-    right:95px;
+    right:0;
+    bottom: 3px;
     color:red;
-    font-size: 2em;
+    font-size: 13px;
 }
 .selectPiece{
     margin:0;
@@ -99,27 +116,14 @@ p{
     color:rgb(68, 0, 255);
 }
 .selectLine{
-display:inline-block;
-font-size: 16px;
-}
-.cancelButton{
-    margin-left: 30px;
-}
-.selectedPiece{
-    position: relative;
-}
-.cancelButton{
     position: absolute;
-    top: -30px;
-    left: -30px;
-    background-color: #84ba3f;
-    padding: 4px 12px;
-    color:#fff;
-    font-size: 16px;
-   
-    border-radius: 10px;
-    
+    bottom: 5px;
+    display:inline-block;
+    font-size: 22px;
 }
+
+
+
 .cancelButton:hover{
     cursor: pointer;
 }
@@ -128,20 +132,44 @@ h2{
     font-family: 'Poppins', sans-serif;
 }
 .firstInstruction{
-    margin-top: 15px;
+    margin-top: 30px;
     color:white
 }
 .newGame{
     position: relative;
 }
+.cancelButton{
+    position: absolute;
+    bottom: 50px;
+    left: 0px;
+    background-color: #84ba3f;
+    padding: 8px 10px;
+    color:#fff;
+    font-size: 20px;
+   
+    border-radius: 10px;
+    
+}
 .newGameButton{
     position: absolute;
-    left: 0px;
-    top: -90px;
+    right: 0px;
+    bottom:50px;
     background-color: #ba3f85;
     padding: 8px 10px;
     color:#fff;
     font-size: 20px;
     border-radius: 10px;
+}
+.instructions p{
+    text-align: center;
+}.winner{
+    position: absolute;
+    bottom:5px;
+    right:0px;
+    font-size: 28px;
+    margin-bottom: 0;
+}
+span{
+    font-size: 16px;
 }
 

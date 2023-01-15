@@ -1,6 +1,9 @@
 function InvalidMove(){
+    
+
     return <div className="invalidMove">
-        <p>invalid move</p>
+        <h2>invalid move</h2>
+  
     </div>
 }
 export default InvalidMove

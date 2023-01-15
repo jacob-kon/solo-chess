@@ -15,21 +15,23 @@ function Rows(){
     const [lastPieceStanding, setLastPieceStanding] = useState('')
     const [winner, setWinner] = useState(false)
     const handleNewGameClick = function(){
-        // console.log('new game was just clicked')
+        console.log('new game was just clicked')
         setChessPieces(game[1])
         setLastPieceStanding(game[1][0].last)
         setGameOn(true)
         setWinner(false)
+        
         // console.log(gameOn)
     }
 
     const handleMove = function(clickedPiece){
+        setInvalidMove(false)
         //the if statement stops this function if a piece has been alredy selected
         if (!pieceSelected){
         const indexOfPiece = clickedPiece-1
-        console.log('(from handleMove) clicked piece at index',indexOfPiece, 'to move')
+        console.log('(from handleMove) clicked piece at index',indexOfPiece+1, 'to move')
         setPieceToMove(chessPieces[indexOfPiece])
-         setPieceSelected(prev => !prev) 
+        setPieceSelected(prev => !prev) 
         }
         }
 
@@ -59,13 +61,23 @@ function Rows(){
         }
 
     const redButtonClick = function(clickedRedButton){
-        
+        console.log('piece to move',chessPieces[pieceToMove.id-1].type)
+        const x1 = pieceToMove.x
+        const y1 = pieceToMove.y
+        const x2 = chessPieces[clickedRedButton-1].x
+        const y2 = chessPieces[clickedRedButton-1].y
+        console.log(x1,y1,' ',x2,y2)
         setInvalidMove(false)
+    //   if(chessPieces[pieceToMove.id-1].type === 'rook'){
+    //     if(x1 !== x2 && y1 !== y2){
+    //      console.log('that is an invalid move for the rook')
+    //     }}
+
+
         if (chessPieces[clickedRedButton-1].type === 'none' ||  chessPieces[clickedRedButton-1].id === pieceToMove.id){
             setInvalidMove((prev)=>!prev)
+        
         } else if(pieceSelected){
-        console.log('piece to move is at id', pieceToMove.id)
-        console.log('clickedButton is', clickedRedButton)
         setChessPieces((prev)=>{
             const updatedBoard = prev.map((square)=>{
                 if (square.id === pieceToMove.id){
@@ -77,7 +89,6 @@ function Rows(){
                 return square
             })
             setPieceToMove({type:'nothing selected'})
-            //put in now
             setPieceSelected(prev => !prev)
             checkForWin(chessPieces, lastPieceStanding)
             return updatedBoard
@@ -87,18 +98,18 @@ function Rows(){
     const pieceComponents = chessPieces.map((item)=>{
             return <OnePiece color={item.color} empty={item.empty} type={item.type} key={item.id} id={item.id} handleMove={handleMove} redButtonClick={redButtonClick}/>
     })
-    // console.log('(from rendering the rows component) setPieceToMove is now ',pieceToMove)
-    // console.log('value of pieceSelected is now', pieceSelected)
-    // console.log(gameOn)
+
     return  <div className="rowsComponent">
-                <NewGame handleNewGameClick={handleNewGameClick}/>
-                <InvalidMove />
-                <SelectedPiece piece={pieceToMove.type} cancel={handleCancel}/>
-                {/* <h2 style={{visibility:invalidMove ?'visible': 'hidden'}} className='invalidMove'>That is not a valid move</h2> */}
-                <Winner hasWon={winner}/>
+                <div className="gameHelpers">
+                    <NewGame handleNewGameClick={handleNewGameClick}/>
+                    {invalidMove ? <InvalidMove /> : ''}
+                    <SelectedPiece piece={pieceToMove.type} cancel={handleCancel}/>
+                    {/* <h2 style={{visibility:invalidMove ?'visible': 'hidden'}} className='invalidMove'>That is not a valid move</h2> */}
+                    <Winner hasWon={winner}/>
+                </div>
                 <div className= "row">
                    {pieceComponents}
-                 </div>       
+                </div>       
             </div>       
 }
 export default Rows

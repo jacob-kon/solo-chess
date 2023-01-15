@@ -1,5 +1,5 @@
 function NewGame({handleNewGameClick}){
-    return<div className="newGame">
+    return<div>
         <button onClick={handleNewGameClick} className="newGameButton" >New Game</button>
     </div>
 }

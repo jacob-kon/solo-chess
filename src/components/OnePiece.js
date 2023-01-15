@@ -12,6 +12,9 @@ function OnePiece({type, id, color, handleMove, redButtonClick}){
         {type === 'pawn' && <img onClick={()=>handleMove(id)} src={pawn} alt="pawn" className='image'/>}
         {type === 'bishop' && <img onClick={()=>handleMove(id)} src={bishop} alt="bishop" className='image'/>}
         <button className='killButton' onClick={()=>redButtonClick(id)}></button>
+
+        {/* <button className='moveButton'></button> */}
+
     </div>
 }
 export default OnePiece
