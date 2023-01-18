@@ -1,6 +1,6 @@
 function Winner({hasWon}){
     return<div className="winner">
-        {hasWon && <p>you won</p>}
+        {hasWon && <p className="won">You Won!</p>}
     </div> 
     
     

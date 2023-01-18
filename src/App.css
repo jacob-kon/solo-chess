@@ -29,6 +29,12 @@ body{
     font-family: 'Poppins', sans-serif;
     text-align: center;
 }
+.instructionHeading{
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    margin: 0;
+    
+}
 .blueChessSquare{
     position: relative;
     display: flex;
@@ -105,14 +111,14 @@ p{
 }
 .invalidMove{
     position: absolute;
-    right:0;
+    right: 0;
     bottom: 3px;
     font-size: 13px;
 }
 .invalidMoveButton{
     color: red;
     background-color:white;
-    padding: 8px 10px;
+    padding: 6px 8px;
     font-size: 20px;
     border-radius: 10px;
 
@@ -168,6 +174,7 @@ h2{
     border-radius: 10px;
 }
 .instructions p{
+    
     text-align: center;
 }.winner{
     position: absolute;
@@ -178,5 +185,11 @@ h2{
 }
 span{
     font-size: 16px;
+}
+.footerInstructions{
+    width:100%;
+}
+.won{
+    color: #160911;
 }
 

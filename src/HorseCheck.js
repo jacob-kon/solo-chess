@@ -1,33 +1,32 @@
 //a will be where the horse is and b is where it wants to go
 //the function will return a string valid or invalid
-function checkHorse(a,b){
+export default function checkHorse(a,b){
     if(a[0]+1 ===b[0] && a[1]+2 === b[1]){
         console.log('valid from 1')
-        // return "valid"
+        return "valid move"
     }else if(a[0]-1===b[0] && a[1]+2 ===b[1]){
         console.log('valid from 2')
-        //return "valid"
+        return "valid move"
     }else if(a[0]-2===b[0] && a[1]+1===b[1]){
         console.log('valid from 3')
-        //return 'valid'
+        return 'valid move'
     }else if(a[0]-2===b[0] && a[1]-1===b[1]){
         console.log('valid from 4')
-        //return 'valid'
+        return 'valid move'
     }else if(a[0]-1===b[0] && a[1]-2===b[1]){
         console.log('valid from 5')
-        // return 'valid'
+        return 'valid move'
     }else if(a[0]+1===b[0] && a[1]-2===b[1]){
         console.log('valid from 6')
-        // return 'valid'
+        return 'valid move'
     }else if(a[0]+2===b[0] && a[1]-1===b[1]){
         console.log('valid from 7')
-        // return 'valid'
+        return 'valid move'
     }else if(a[0]+2===b[0] && a[1]+1===b[1]){
         console.log('valid from 8')
-        // return 'valid'
+        return 'valid move'
     }else{
         console.log('invalid')
-        // return 'invalid'
+        return 'invalid'
     }
 }
-checkHorse([3,3],[2,2])

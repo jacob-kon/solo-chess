@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useEffect } from "react"
+// import { useEffect } from "react"
 import OnePiece from "./OnePiece"
 import game from '../Games'
 import SelectedPiece from "./SelectedPiece"
@@ -8,25 +8,23 @@ import Winner from "./Winner"
 import InvalidMove from "./InvalidMove"
 import rookCheck from "../RookCheck"
 import checkBishop from '../BishopCheck'
-
+import checkHorse from '../HorseCheck'
+import checkKing from '../CheckKing'
+import checkPawn from '../PawnCheck'
 function Rows(){
   
     const [chessPieces, setChessPieces] = useState(game[0])
     const [pieceToMove, setPieceToMove] = useState({type:'nothing selected'})
     const [invalidMove, setInvalidMove] = useState(false)
     const [pieceSelected, setPieceSelected] = useState(false)
-    const [gameOn, setGameOn] = useState(false)
-    const [lastPieceStanding, setLastPieceStanding] = useState('')
     const [winner, setWinner] = useState(false)
 
     const handleNewGameClick = function(){
         console.log('new game was just clicked')
-        setChessPieces(game[1])
-        setLastPieceStanding(game[1][0].last)
-        setGameOn(true)
+        setChessPieces(game[6])
         setWinner(false)
+        setInvalidMove(false)
         console.clear()
-        // console.log(gameOn)
     }
 
     const handleMove = function(clickedPiece){
@@ -34,11 +32,9 @@ function Rows(){
         //the if statement stops this function if a piece has been alredy selected
         if (!pieceSelected){
         const indexOfPiece = clickedPiece-1
-        // console.log('(from handleMove) clicked piece at index',indexOfPiece+1, 'to move')
         setPieceToMove(chessPieces[indexOfPiece])
         setPieceSelected(prev => !prev) 
         }
-       
     }
 
     const handleCancel = function(){
@@ -47,23 +43,20 @@ function Rows(){
         console.log('clicked cancel')
     }
 
-    const checkForWin = function(currentBoard, lastPiece){
-        // console.log(currentBoard)
-        let empty = 1
-        let winner = false
+    const checkForWin = function(currentBoard){
+        console.log('running check for win')
+        let empty = 0
         for (let i=0; i<=15; i++){
             if(currentBoard[i].type === 'none'){
                 empty = empty +1
-            }else if (currentBoard[i].type === lastPiece  && currentBoard[i].id === 6){
-                winner = true
             }
         }
-            if (winner === true && empty === 15){
+            if ( empty === 14){
                 console.log('we have a winner')
+                console.log(chessPieces)
                 setWinner(true)
             }
-            console.log('empty spots on board is', empty)
-            console.log('winner',winner)
+          console.log('empty= ',empty)  
         }
     //function to execute move by clicking on red button of destination
     const redButtonClick = function(clickedRedButton){
@@ -83,7 +76,7 @@ function Rows(){
                for (let z=0; z<= result.length-1; z++){
                 for (let i=0; i<=15 ;i++){
                     if (chessPieces[i].x === result[z][0] && chessPieces[i].y === result[z][1]){
-                        console.log(chessPieces[i].position,'match was found')
+                        console.log(chessPieces[i].position,'match was foundd')
                         if (chessPieces[i].type !== 'none'){
                             setInvalidMove(true)
                             return handleCancel()
@@ -106,7 +99,7 @@ function Rows(){
                for (let z=0; z<= result.length-1; z++){
                 for (let i=0; i<=15 ;i++){
                     if (chessPieces[i].x === result[z][0] && chessPieces[i].y === result[z][1]){
-                        console.log(chessPieces[i].position,'match was found')
+                        console.log(chessPieces[i].position,'match was found1')
                         if (chessPieces[i].type !== 'none'){
                             setInvalidMove(true)
                             return handleCancel()
@@ -115,8 +108,33 @@ function Rows(){
                    }
                }
             }
-
-
+        }
+        //checking for a bad move on the knight
+        if(chessPieces[pieceToMove.id-1].type === 'horse'){
+            console.log('horse needs checking')
+            const result = checkHorse(start,end)
+            if (result === 'invalid'){
+                setInvalidMove(true)
+                return handleCancel()
+            }
+        }
+        //checking for bad move with the king
+        if(chessPieces[pieceToMove.id-1].type === 'king'){
+            console.log('king needs checking')
+            const result = checkKing(start,end)
+            if (result === 'invalid'){
+                setInvalidMove(true)
+                return handleCancel()
+            }
+        }
+        //checking for bad move with the pawn
+        if(chessPieces[pieceToMove.id-1].type === 'pawn'){
+            console.log('pawn needs checking')
+            const result = checkPawn(start,end)
+            if (result === 'invalid'){
+                setInvalidMove(true)
+                return handleCancel()
+            }
         }
         // checking to see if player is moving to an empty space
         if (chessPieces[clickedRedButton-1].type === 'none' ||  chessPieces[clickedRedButton-1].id === pieceToMove.id){
@@ -138,28 +156,23 @@ function Rows(){
             //and check if player won
             setPieceToMove({type:'nothing selected'})
             setPieceSelected(prev => !prev)
-            checkForWin(chessPieces, lastPieceStanding)
+            checkForWin(chessPieces)
             return updatedBoard
         })
         }}
    
 
    
-    //*****************maps out the pieces of the game */
+    //***************** maps out the pieces of the game */
     const pieceComponents = chessPieces.map((item)=>{
             return <OnePiece color={item.color} empty={item.empty} type={item.type} key={item.id} id={item.id} handleMove={handleMove} redButtonClick={redButtonClick}/>
     })
-
-    // useEffect(()=>{
-    //     console.log('piece selected to move is',pieceToMove)
-    // },[pieceToMove])
 
     return  <div className="rowsComponent">
                 <div className="gameHelpers">
                     <NewGame handleNewGameClick={handleNewGameClick}/>
                     {invalidMove ? <InvalidMove /> : ''}
                     <SelectedPiece piece={pieceToMove.type} cancel={handleCancel}/>
-                    {/* <h2 style={{visibility:invalidMove ?'visible': 'hidden'}} className='invalidMove'>That is not a valid move</h2> */}
                     <Winner hasWon={winner}/>
                 </div>
                 <div className= "row">
