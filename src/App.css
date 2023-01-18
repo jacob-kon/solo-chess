@@ -107,8 +107,15 @@ p{
     position: absolute;
     right:0;
     bottom: 3px;
-    color:red;
     font-size: 13px;
+}
+.invalidMoveButton{
+    color: red;
+    background-color:white;
+    padding: 8px 10px;
+    font-size: 20px;
+    border-radius: 10px;
+
 }
 .selectPiece{
     margin:0;

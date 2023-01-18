@@ -2,7 +2,7 @@ function InvalidMove(){
     
 
     return <div className="invalidMove">
-        <h2>invalid move</h2>
+        <button className="invalidMoveButton">invalid move</button>
   
     </div>
 }
