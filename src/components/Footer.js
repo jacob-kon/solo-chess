@@ -7,7 +7,7 @@ function Footer(){
                     <p>Moves can ONLY be made to an occupied square</p>
                     <p>Be left with one piece after killing the king and win!</p>
                     <p>To cancel selected piece press green cancel button.</p>
-                    <p>Code and game design by J. Kon</p>
+                    <p>Code and game design by Jacob Kon</p>
     </div>
 }
 export default Footer
