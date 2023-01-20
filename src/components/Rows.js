@@ -1,6 +1,7 @@
 import { useState } from "react"
 // import { useEffect } from "react"
 import OnePiece from "./OnePiece"
+
 import game from '../Games'
 import SelectedPiece from "./SelectedPiece"
 import NewGame from "./NewGame"
@@ -19,13 +20,15 @@ function Rows(){
     const [pieceSelected, setPieceSelected] = useState(false)
     const [winner, setWinner] = useState(false)
 
+
     const handleNewGameClick = function(){
-        console.log('new game was just clicked')
-        setChessPieces(game[6])
+        const gameNum = Math.floor(Math.random()*6+1)
+        setChessPieces(game[gameNum])
         setWinner(false)
         setInvalidMove(false)
         console.clear()
     }
+    
 
     const handleMove = function(clickedPiece){
         setInvalidMove(false)
@@ -160,7 +163,8 @@ function Rows(){
             return updatedBoard
         })
         }}
-   
+ 
+    
 
    
     //***************** maps out the pieces of the game */
@@ -170,6 +174,7 @@ function Rows(){
 
     return  <div className="rowsComponent">
                 <div className="gameHelpers">
+                    
                     <NewGame handleNewGameClick={handleNewGameClick}/>
                     {invalidMove ? <InvalidMove /> : ''}
                     <SelectedPiece piece={pieceToMove.type} cancel={handleCancel}/>

@@ -168,7 +168,7 @@ h2{
     right: 0px;
     bottom:50px;
     background-color: #ba3f85;
-    padding: 8px 10px;
+    padding: 7px 18px;
     color:#fff;
     font-size: 20px;
     border-radius: 10px;
@@ -191,5 +191,9 @@ span{
 }
 .won{
     color: #160911;
+}
+.levelButtons{
+    position: absolute;
+    right:0;
 }
 
